@@ -1,0 +1,13 @@
+diff --git a/win32/makefile.w32 b/win32/makefile.w32
+index 7afbf0e..0608146 100644
+--- a/win32/makefile.w32
++++ b/win32/makefile.w32
+@@ -92,7 +92,7 @@ RC=rc
+ # by passing the -stub switch to the 32-bit linker to specify the 16-bit part.
+ 
+ LD=link -nologo
+-LDFLAGS=user32.lib advapi32.lib /OPT:NOWIN98 /INCREMENTAL:NO /PDB:$*.pdb $(EXTLIB)
++LDFLAGS=user32.lib advapi32.lib /INCREMENTAL:NO /PDB:$*.pdb $(EXTLIB)
+ SYMS=/DEBUG:full /DEBUGTYPE:CV
+ !IFDEF debug
+ LDFLAGS=$(LDFLAGS) $(SYMS)

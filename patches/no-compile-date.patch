@@ -1,0 +1,13 @@
+diff --git a/win32/win32.c b/win32/win32.c
+index 5798053..9d851cb 100644
+--- a/win32/win32.c
++++ b/win32/win32.c
+@@ -1248,7 +1248,7 @@ void version_local()
+ #endif
+ 
+ /* Define the compile date string */
+-#ifdef __DATE__
++#if 0
+ #  define COMPILE_DATE " on " __DATE__
+ #else
+ #  define COMPILE_DATE ""

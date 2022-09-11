@@ -1,0 +1,44 @@
+diff --git a/zip.h b/zip.h
+index ba03160..438d976 100644
+--- a/zip.h
++++ b/zip.h
+@@ -262,7 +262,7 @@ struct plist {
+ 
+ /* ASCII definitions for line terminators in text files: */
+ #define LF     10        /* '\n' on ASCII machines; must be 10 due to EBCDIC */
+-#define CR     13        /* '\r' on ASCII machines; must be 13 due to EBCDIC */
++#define MAC_EOL 13       /* '\r' on ASCII machines; must be 13 due to EBCDIC */
+ #define CTRLZ  26        /* DOS & OS/2 EOF marker (used in fileio.c, vms.c) */
+ 
+ /* return codes of password fetches (negative: user abort; positive: error) */
+diff --git a/zipup.c b/zipup.c
+index 39f7d9c..0142f51 100644
+--- a/zipup.c
++++ b/zipup.c
+@@ -1207,7 +1207,7 @@ local unsigned file_read(buf, size)
+             char c;
+ 
+             if ((c = *b++) == '\n') {
+-               *buf++ = CR; *buf++ = LF; len++;
++               *buf++ = MAC_EOL; *buf++ = LF; len++;
+             } else {
+               *buf++ = (char)ascii[(uch)c];
+             }
+@@ -1217,7 +1217,7 @@ local unsigned file_read(buf, size)
+ #endif /* EBCDIC */
+       {
+          do {
+-            if ((*buf++ = *b++) == '\n') *(buf-1) = CR, *buf++ = LF, len++;
++            if ((*buf++ = *b++) == '\n') *(buf-1) = MAC_EOL, *buf++ = LF, len++;
+          } while (--size != 0);
+       }
+       buf -= len;
+@@ -1257,7 +1257,7 @@ local unsigned file_read(buf, size)
+ #endif /* EBCDIC */
+       {
+          do {
+-            if (( *buf++ = *b++) == CR && *b == LF) buf--, len--;
++            if (( *buf++ = *b++) == MAC_EOL && *b == LF) buf--, len--;
+          } while (--size != 0);
+       }
+       if (len == 0) {
